@@ -3,6 +3,7 @@
 
 #include <list>
 
+#include "board.h"
 #include "player.h"
 #include "toofewdiceexception.h"
 #include "toofewplayersexception.h"
