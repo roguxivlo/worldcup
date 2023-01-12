@@ -5,10 +5,7 @@
 
 #include "board.h"
 #include "player.h"
-#include "toofewdiceexception.h"
-#include "toofewplayersexception.h"
-#include "toomanydiceexception.h"
-#include "toomanyplayersexception.h"
+#include "exceptions.h"
 #include "worldcup.h"
 
 // todo: jakich typów użyć do pieniedzy?
