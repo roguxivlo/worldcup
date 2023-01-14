@@ -8,6 +8,9 @@
 #include "player.h"
 #include "types.h"
 #include "worldcup.h"
+#include "defaultscoreboard.h"
+
+// TODO czy ddefault score board obowiązkowy.
 
 class WorldCup2022 : public WorldCup {
  public:
@@ -30,6 +33,7 @@ class WorldCup2022 : public WorldCup {
   // wyników, która nic nie robi.
   void setScoreBoard(std::shared_ptr<ScoreBoard> scoreboard) override {
     this->scoreboard = scoreboard;
+    scoreboard_set = true;
   }
 
   // Przeprowadza rozgrywkę co najwyżej podanej liczby rund (rozgrywka może
@@ -65,7 +69,9 @@ class WorldCup2022 : public WorldCup {
   static const size_t MIN_PLAYERS = 2;
   static const size_t MAX_PLAYERS = 11;
   static const money_t INITIAL_MONEY = 1000;
+  static const DefaultScoreBoard DEFAULT_SCOREBOARD;
   player_list_t players;
+  bool scoreboard_set = false;
   std::shared_ptr<ScoreBoard> scoreboard;
   std::shared_ptr<Die> dice[N_DICE];
   size_t n_dice = 0;
