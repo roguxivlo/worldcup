@@ -10,8 +10,12 @@
 #include "types.h"
 #include "yellowcard.h"
 
+// TODO: advance method!!
+
 class Board {
  public:
+  Square* advance(const Player* player) { return nullptr; }
+
  private:
   static const size_t N_SQUARES = 12;
   const square_list_t squares = {
