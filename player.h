@@ -3,14 +3,16 @@
 
 #include <string>
 
+#include "types.h"
+
 class Player {
  public:
-  Player(std::string const &name, const int money) : name(name), money(money) {}
+  Player(player_name_t const &name, const money_t money) : name(name), money(money) {}
   virtual ~Player() = default;
 
  private:
-  std::string name;
-  int money;
+  const player_name_t name;
+  money_t money;
 };
 
 #endif  // PLAYER_H

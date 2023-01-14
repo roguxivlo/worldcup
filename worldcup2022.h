@@ -4,16 +4,10 @@
 #include <list>
 
 #include "board.h"
-#include "player.h"
 #include "exceptions.h"
+#include "player.h"
+#include "types.h"
 #include "worldcup.h"
-
-// todo: jakich typów użyć do pieniedzy?
-
-const unsigned int N_DICE = 2;
-const unsigned int MIN_PLAYERS = 2;
-const unsigned int MAX_PLAYERS = 11;
-const unsigned int INITIAL_MONEY = 1000;
 
 class WorldCup2022 : public WorldCup {
  public:
@@ -28,7 +22,7 @@ class WorldCup2022 : public WorldCup {
   }
 
   // Dodaje nowego gracza o podanej nazwie.
-  void addPlayer(std::string const &name) override {
+  void addPlayer(player_name_t const &name) override {
     players.push_back(Player(name, INITIAL_MONEY));
   }
 
@@ -54,10 +48,15 @@ class WorldCup2022 : public WorldCup {
   void play(unsigned int rounds) override {}
 
  private:
-  std::list<Player> players;
+  static const size_t N_DICE = 2;
+  static const size_t MIN_PLAYERS = 2;
+  static const size_t MAX_PLAYERS = 11;
+  static const money_t INITIAL_MONEY = 1000;
+  player_list_t players;
   std::shared_ptr<ScoreBoard> scoreboard;
   std::shared_ptr<Die> dice[N_DICE];
   size_t n_dice = 0;
+  const Board board;
 };
 
 #endif  // WORLDCUP2022_H
