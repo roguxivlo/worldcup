@@ -15,7 +15,7 @@ class Board {
  private:
   static const size_t N_SQUARES = 12;
   const square_list_t squares = {
-      Start("Początek sezonu"),
+      Start("Początek sezonu", 50),
       Match("Mecz z San Marino", 160, Match::FRIENDLY),
       NoTraining("Dzień wolny od treningu"),
       Match("Mecz z Liechtensteinem", 220, Match::FRIENDLY),
