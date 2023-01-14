@@ -6,8 +6,10 @@
 
 class YellowCard : public Square {
  public:
-  YellowCard(square_name_t const &name, size_t suspension)
+  YellowCard(square_name_t const& name, size_t suspension)
       : Square(name), suspension(suspension) {}
+  void action(Player& player) override { player.suspend(suspension); }
+  void passing_action(Player& player) override { return; }
 
  private:
   const size_t suspension;

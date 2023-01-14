@@ -6,8 +6,10 @@
 
 class Start : public Square {
  public:
-  Start(square_name_t const &name, money_t bonus)
+  Start(square_name_t const& name, money_t bonus)
       : Square(name), bonus(bonus) {}
+  void action(Player& player) override { player.add_money(bonus); }
+  void passing_action(Player& player) override { player.add_money(bonus); }
 
  private:
   const money_t bonus;

@@ -19,6 +19,7 @@ class Bookie : public Square {
       player.add_money(-loss);
     }
   }
+  void passing_action(Player &player) override { return; }
 
  private:
   const size_t win_modulo;
