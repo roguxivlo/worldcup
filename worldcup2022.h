@@ -45,7 +45,20 @@ class WorldCup2022 : public WorldCup {
   // Rzuca TooFewPlayersException, jeśli liczba graczy nie pozwala na
   // rozpoczęcie gry.
   // Wyjątki powinny dziedziczyć po std::exception.
-  void play(unsigned int rounds) override {}
+  void play(unsigned int rounds) override {
+    if (n_dice > N_DICE) {
+      throw TooManyDiceException();
+    }
+    if (n_dice < N_DICE) {
+      throw TooFewDiceException();
+    }
+    if (players.size() > MAX_PLAYERS) {
+      throw TooManyPlayersException();
+    }
+    if (players.size() < MIN_PLAYERS) {
+      throw TooFewPlayersException();
+    }
+  }
 
  private:
   static const size_t N_DICE = 2;

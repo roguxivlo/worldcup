@@ -6,11 +6,15 @@
 
 class Match : public Square {
  public:
-  Match(square_name_t const &name, money_t match_fee)
-      : Square(name), match_fee(match_fee) {}
+  static const match_weight_t FRIENDLY = 1;
+  static const match_weight_t GROUP_STAGE = 2.5;
+  static const match_weight_t FINAL = 4;
+  Match(square_name_t const &name, money_t match_fee, match_weight_t weight)
+      : Square(name), match_fee(match_fee), weight(weight) {}
 
  private:
   const money_t match_fee;
+  const match_weight_t weight;
 };
 
 #endif  // MATCH_H
