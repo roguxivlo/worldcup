@@ -3,7 +3,6 @@
 
 #include "square.h"
 #include "types.h"
-#include <iostream>
 
 class Match : public Square {
 public:
