@@ -9,6 +9,7 @@
 #include "dice.h"
 
 class Square;
+
 class Board;
 
 class Player {
@@ -17,7 +18,7 @@ public:
     static const size_t SUSPENDED = 1;
     static const size_t BANKRUPT = 2;
 
-    Player(player_name_t const &name, money_t money) ;
+    Player(player_name_t const &name, money_t money);
 
     void add_money(money_t amount);
 
