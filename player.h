@@ -6,6 +6,7 @@
 
 #include "types.h"
 #include "worldcup.h"
+#include "dice.h"
 
 class Square;
 class Board;
@@ -24,7 +25,7 @@ public:
 
     money_t get_money() const;
 
-    std::shared_ptr<Square> play_round(std::shared_ptr<Die> *dice, Board &board);
+    std::shared_ptr<Square> play_round(Dice &dice, Board &board);
 
     player_name_t get_name() const;
 

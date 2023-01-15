@@ -9,6 +9,7 @@
 #include "player.h"
 #include "types.h"
 #include "worldcup.h"
+#include "dice.h"
 
 // TODO czy ddefault score board obowiązkowy.
 
@@ -22,7 +23,8 @@ public:
     // (ale nie ma błędu).
     void addDie(std::shared_ptr<Die> die) override {
         if (die != nullptr) {
-            dice[(n_dice++) % N_DICE] = die;
+            dice.add_die(die);
+            n_dice++;
         }
     }
 
@@ -121,7 +123,7 @@ private:
     size_t players_in_game;
     bool scoreboard_set = false;
     std::shared_ptr<ScoreBoard> scoreboard;
-    std::shared_ptr<Die> dice[N_DICE];
+    Dice dice;
     size_t n_dice = 0;
     Board board;
 };

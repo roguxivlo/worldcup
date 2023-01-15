@@ -24,7 +24,7 @@ void Player::suspend(const size_t suspension) {
 
 money_t Player::get_money() const { return money; }
 
-std::shared_ptr<Square> Player::play_round(std::shared_ptr<Die> *dice, Board &board) {
+std::shared_ptr<Square> Player::play_round(Dice &dice, Board &board) {
   std::cerr << name << " plays round" << std::endl;
   if (status == SUSPENDED) {
     std::cerr << name << " is suspended" << std::endl;
@@ -35,7 +35,7 @@ std::shared_ptr<Square> Player::play_round(std::shared_ptr<Die> *dice, Board &bo
     }
   }
   if (status == PLAYING) {
-    size_t moves = dice[0]->roll() + dice[1]->roll();
+    size_t moves = dice.roll();
     std::cerr << name << " is playing, has: " << moves << " moves" << std::endl;
     Square *square;
     if (moves > 0) {
