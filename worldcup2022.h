@@ -70,6 +70,9 @@ public:
             scoreboard->onRound(round);
             for (const auto& p: players) {
                 // TODO ładniej
+                if (p->get_status() == Player::BANKRUPT) {
+                    continue;
+                }
                 size_t moves = p->get_status() == Player::PLAYING ? dice[0]->roll() + dice[1]->roll() : 0;
                 square = p->play_round(moves, board).get();
                 scoreboard->onTurn(p->get_name(), p->status_to_string(), square->name,
