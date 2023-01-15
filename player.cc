@@ -44,7 +44,7 @@ std::shared_ptr<Square> Player::play_round(Dice &dice, Board &board) {
                 }
             }
             ++position;
-            position %= board.get_n_squares();
+            position %= Board::N_SQUARES;
         }
 
         if (status != BANKRUPT) {
