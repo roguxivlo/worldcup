@@ -34,7 +34,7 @@ private:
             std::make_shared<YellowCard>("Żółta kartka", 3),
             std::make_shared<Match>("Mecz z Meksykiem", 300, Match::GROUP_STAGE),
             std::make_shared<Match>("Mecz z Arabią Saudyjską", 280, Match::GROUP_STAGE),
-            std::make_shared<Bookie>("Bukmacher", 3, 300, 300),
+            std::make_shared<Bookie>("Bukmacher", 3, 100, 100),
             std::make_shared<Match>("Mecz z Argentyną", 250, Match::GROUP_STAGE),
             std::make_shared<Goal>("Gol", 120),
             std::make_shared<Match>("Mecz z Francją", 400, Match::FINAL),

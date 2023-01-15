@@ -56,7 +56,7 @@ int main() {
   assert(scoreboard->str() ==
          "=== Runda: 0\n"
          "Lewandowski [w grze] [840] - Dzień wolny od treningu\n"
-         "Messi [w grze] [840] - Mecz z Lichtensteinem\n"
+         "Messi [w grze] [840] - Mecz z Liechtensteinem\n"
          "Ronaldo [*** czekanie: 3 ***] [620] - Żółta kartka\n"
          "=== Runda: 1\n"
          "Lewandowski [*** czekanie: 3 ***] [620] - Żółta kartka\n"
