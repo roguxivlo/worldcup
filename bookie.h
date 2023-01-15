@@ -13,7 +13,6 @@ public:
 
     void action(Player &player) override {
         // std::cerr<<name<<" at bookie ";
-        static size_t counter = 2;
         ++counter;
         counter %= win_modulo;
         if (counter == 0) {
@@ -29,6 +28,7 @@ private:
     const size_t win_modulo;
     const money_t prize;
     const money_t loss;
+    size_t counter = 2;
 };
 
 #endif  // BOOKIE_H
