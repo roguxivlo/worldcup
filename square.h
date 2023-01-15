@@ -3,14 +3,19 @@
 
 #include "types.h"
 
-class Square {
- public:
-  Square(square_name_t name) : name(name) {}
-  const square_name_t name;
-  virtual void action(Player& player) = 0;
-  virtual void passing_action(Player& player) = 0;
+class Player;
 
- private:
+class Square {
+public:
+    Square(square_name_t name) : name(name) {}
+
+    const square_name_t name;
+
+    virtual void action(Player &player) = 0;
+
+    virtual void passing_action(Player &player) = 0;
+
+private:
 };
 
 #endif  // SQUARE_H
