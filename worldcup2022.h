@@ -68,6 +68,7 @@ public:
         }
         size_t round = 0;
         Square *square;
+        players_in_game = players.size();
         while (round < rounds) {
             scoreboard->onRound(round);
             for (const auto& p: players) {
@@ -78,22 +79,17 @@ public:
                 square = p->play_round(dice, board).get();
                 scoreboard->onTurn(p->get_name(), p->status_to_string(), square->name,
                                    p->get_money());
-            }
-            Player *potential_winner = nullptr;
-            for (const auto &p : players) {
-                if (p->get_status() != Player::BANKRUPT) {
-                    if (potential_winner == nullptr) {
-                        potential_winner = p.get();
-                    } else {
-                        potential_winner = nullptr;
-                        break;
-                    }
-
+                if (p->get_status() == Player::BANKRUPT) {
+                    --players_in_game;
                 }
-            }
-            if (potential_winner != nullptr) {
-                scoreboard->onWin(potential_winner->get_name());
-                return;
+                if (players_in_game == 1) {
+                    for (const auto &q : players) {
+                        if (q->get_status() != Player::BANKRUPT) {
+                            scoreboard->onWin(q->get_name());
+                            return;
+                        }
+                    }
+                }
             }
 
             ++round;
