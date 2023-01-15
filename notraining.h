@@ -8,9 +8,9 @@ class NoTraining : public Square {
 public:
     NoTraining(square_name_t const &name) : Square(name) {}
 
-    void action(Player &player) override { return; }
+    void action([[maybe_unused]] Player &player) override {  }
 
-    void passing_action(Player &player) override { return; }
+    void passing_action([[maybe_unused]] Player &player) override {  }
 };
 
 #endif  // NO_TRAINING_H

@@ -6,17 +6,16 @@
 class DefaultScoreBoard : public ScoreBoard {
 public:
     // Wywoływane, aby zasygnalizować początek rundy.
-    void onRound(unsigned int roundNo) override { return; }
+    void onRound([[maybe_unused]] unsigned int roundNo) override {  }
 
     // Wywoływane po skończeniu kolejki danego gracza, aby przekazać informacje o
     // aktualnym stanie gracza.
-    void onTurn(std::string const &playerName, std::string const &playerStatus,
-                std::string const &squareName, unsigned int money) override {
-        return;
+    void onTurn([[maybe_unused]] std::string const &playerName, [[maybe_unused]] std::string const &playerStatus,
+                [[maybe_unused]] std::string const &squareName, [[maybe_unused]] unsigned int money) override {
     }
 
     // Wywoływane, aby zasygnalizować zwycięstwo danego gracza.
-    void onWin(std::string const &playerName) override { return; }
+    void onWin([[maybe_unused]] std::string const &playerName) override {  }
 };
 
 #endif  // DEFAULT_SCORE_BOARD_H

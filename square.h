@@ -13,7 +13,7 @@ public:
 
     virtual void action(Player &player) = 0;
 
-    virtual void passing_action(Player &player) = 0;
+    virtual void passing_action([[maybe_unused]] Player &player) = 0;
 };
 
 #endif  // SQUARE_H

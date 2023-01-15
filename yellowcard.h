@@ -11,7 +11,7 @@ public:
 
     void action(Player &player) override { player.suspend(suspension); }
 
-    void passing_action(Player &player) override { return; }
+    void passing_action([[maybe_unused]] Player &player) override {  }
 
 private:
     const size_t suspension;
