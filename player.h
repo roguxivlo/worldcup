@@ -1,45 +1,45 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <string>
 #include <memory>
+#include <string>
 
+#include "dice.h"
 #include "types.h"
 #include "worldcup.h"
-#include "dice.h"
 
 class Square;
 
 class Board;
 
 class Player {
-public:
-    static const size_t PLAYING = 0;
-    static const size_t SUSPENDED = 1;
-    static const size_t BANKRUPT = 2;
+ public:
+  static const size_t PLAYING = 0;
+  static const size_t SUSPENDED = 1;
+  static const size_t BANKRUPT = 2;
 
-    Player(player_name_t name, money_t money);
+  Player(player_name_t name, money_t money);
 
-    void add_money(money_t amount);
+  void add_money(money_t amount);
 
-    void suspend(size_t suspension);
+  void suspend(size_t suspension);
 
-    money_t get_money() const;
+  money_t get_money() const;
 
-    std::shared_ptr<Square> play_round(Dice &dice, Board const &board);
+  std::shared_ptr<Square> play_round(Dice &dice, Board const &board);
 
-    player_name_t get_name() const;
+  player_name_t get_name() const;
 
-    size_t get_status() const;
+  size_t get_status() const;
 
-    std::string status_to_string() const;
+  std::string status_to_string() const;
 
-private:
-    const player_name_t name;
-    money_t money;
-    size_t status = PLAYING;
-    size_t suspension_time = 0;
-    size_t position = 0;
+ private:
+  const player_name_t name;
+  money_t money;
+  size_t status = PLAYING;
+  size_t suspension_time = 0;
+  size_t position = 0;
 };
 
 #endif  // PLAYER_H

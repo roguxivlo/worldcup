@@ -5,17 +5,15 @@
 #include "types.h"
 
 class Goal : public Square {
-public:
-    Goal(square_name_t const &name, money_t bonus) : Square(name), bonus(bonus) {}
+ public:
+  Goal(square_name_t const &name, money_t bonus) : Square(name), bonus(bonus) {}
 
-    void action(Player &player) override {
-        player.add_money(bonus);
-    }
+  void action(Player &player) override { player.add_money(bonus); }
 
-    void passing_action([[maybe_unused]] Player &player) override {  }
+  void passing_action([[maybe_unused]] Player &player) override {}
 
-private:
-    const money_t bonus;
+ private:
+  const money_t bonus;
 };
 
 #endif  // GOAL_H

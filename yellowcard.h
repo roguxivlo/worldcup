@@ -5,16 +5,16 @@
 #include "types.h"
 
 class YellowCard : public Square {
-public:
-    YellowCard(square_name_t const &name, size_t suspension)
-            : Square(name), suspension(suspension) {}
+ public:
+  YellowCard(square_name_t const &name, size_t suspension)
+      : Square(name), suspension(suspension) {}
 
-    void action(Player &player) override { player.suspend(suspension); }
+  void action(Player &player) override { player.suspend(suspension); }
 
-    void passing_action([[maybe_unused]] Player &player) override {  }
+  void passing_action([[maybe_unused]] Player &player) override {}
 
-private:
-    const size_t suspension;
+ private:
+  const size_t suspension;
 };
 
 #endif  // YELLOW_CARD_H
