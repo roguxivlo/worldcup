@@ -103,7 +103,7 @@ private:
     std::shared_ptr<ScoreBoard> scoreboard;
     Dice dice;
     size_t n_dice = 0;
-    Board board;
+    const Board board = Board();
 };
 
 #endif  // WORLDCUP2022_H

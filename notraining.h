@@ -6,7 +6,7 @@
 
 class NoTraining : public Square {
 public:
-    NoTraining(square_name_t const &name) : Square(name) {}
+    explicit NoTraining(square_name_t const &name) : Square(name) {}
 
     void action([[maybe_unused]] Player &player) override {  }
 

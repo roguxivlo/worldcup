@@ -18,7 +18,7 @@ public:
     static const size_t SUSPENDED = 1;
     static const size_t BANKRUPT = 2;
 
-    Player(player_name_t const &name, money_t money);
+    Player(player_name_t name, money_t money);
 
     void add_money(money_t amount);
 
@@ -26,7 +26,7 @@ public:
 
     money_t get_money() const;
 
-    std::shared_ptr<Square> play_round(Dice &dice, Board &board);
+    std::shared_ptr<Square> play_round(Dice &dice, Board const &board);
 
     player_name_t get_name() const;
 

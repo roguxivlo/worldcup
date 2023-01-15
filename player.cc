@@ -1,13 +1,13 @@
 #include "player.h"
 
-#include <iostream>
+#include <utility>
 
 #include "board.h"
 #include "square.h"
 #include "types.h"
 
-Player::Player(player_name_t const &name, money_t money)
-        : name(name), money(money) {}
+Player::Player(player_name_t name, money_t money)
+        : name(std::move(name)), money(money) {}
 
 void Player::add_money(const money_t amount) {
     money += amount;
@@ -24,7 +24,7 @@ void Player::suspend(const size_t suspension) {
 
 money_t Player::get_money() const { return money; }
 
-std::shared_ptr<Square> Player::play_round(Dice &dice, Board &board) {
+std::shared_ptr<Square> Player::play_round(Dice &dice, Board const &board) {
     if (status == SUSPENDED) {
         --suspension_time;
         if (suspension_time == 0) {

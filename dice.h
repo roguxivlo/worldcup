@@ -11,7 +11,7 @@ public:
         dice.push_back(die);
     }
 
-    size_t roll() {
+    size_t roll() const {
         size_t sum = 0;
         for (auto &die: dice) {
             sum += die->roll();

@@ -1,13 +1,15 @@
 #ifndef SQUARE_H
 #define SQUARE_H
 
+#include <utility>
+
 #include "types.h"
 
 class Player;
 
 class Square {
 public:
-    explicit Square(square_name_t name) : name(name) {}
+    explicit Square(square_name_t name) : name(std::move(name)) {}
 
     const square_name_t name;
 
