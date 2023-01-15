@@ -7,12 +7,12 @@
 class Dice {
 public:
 
-    void add_die(std::shared_ptr<Die> die) {
+    void add_die(const std::shared_ptr<Die>& die) {
         dice.push_back(die);
     }
 
-    unsigned short roll() {
-        unsigned short sum = 0;
+    size_t roll() {
+        size_t sum = 0;
         for (auto &die: dice) {
             sum += die->roll();
         }
