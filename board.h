@@ -14,24 +14,18 @@
 #include "types.h"
 #include "yellowcard.h"
 
-// TODO: advance method!!
-
 class Player;
 
-using players_positions_t = std::map<Player*, int>;
 using square_list_t = std::vector<std::shared_ptr<Square>>;
 
 class Board {
 public:
-    Square *advance(const Player *player) {return nullptr;}
-
     std::shared_ptr<Square> get_square(size_t position) { return squares[position]; }
 
     size_t get_n_squares() const { return N_SQUARES; }
 
 private:
     static const size_t N_SQUARES = 12;
-    players_positions_t players_positions;
     const square_list_t squares = {
             std::make_shared<Start>("Początek sezonu", 50),
             std::make_shared<Match>("Mecz z San Marino", 160, Match::FRIENDLY),

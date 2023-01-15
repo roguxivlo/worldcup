@@ -11,8 +11,8 @@ class Board;
 
 class Player {
 public:
-    static const size_t SUSPENDED = 1;
     static const size_t PLAYING = 0;
+    static const size_t SUSPENDED = 1;
     static const size_t BANKRUPT = 2;
 
     Player(player_name_t const &name, money_t money) ;
@@ -27,7 +27,9 @@ public:
 
     player_name_t get_name() const;
 
-    std::string get_status() const;
+    size_t get_status() const;
+
+    std::string status_to_string() const;
 
 private:
     const player_name_t name;

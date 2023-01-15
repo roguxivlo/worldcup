@@ -2,6 +2,7 @@
 #include "types.h"
 #include "square.h"
 #include "board.h"
+#include <iostream>
 
 Player::Player(player_name_t const &name, money_t money) : name(name), money(money) {}
 
@@ -32,18 +33,20 @@ std::shared_ptr<Square> Player::play_round(size_t moves, Board &board) {
     } else if (status == PLAYING) {
         Square *square;
         for (size_t i = 0; i < moves - 1; ++i) {
-            position++;
+            ++position;
             position %= board.get_n_squares();
-            square = board.get_square(position).get();
-            square->passing_action(*this);
-            if (status == BANKRUPT) {
-                return nullptr; // TODO syf
+            std::cerr << name << ' ' << money << '\n';
+            if (status != BANKRUPT) {
+                square = board.get_square(position).get();
+                square->passing_action(*this);
             }
         }
-        position++;
+        ++position;
         position %= board.get_n_squares();
-        square = board.get_square(position).get();
-        square->action(*this);
+        if (status != BANKRUPT) {
+            square = board.get_square(position).get();
+            square->action(*this);
+        }
     }
     return board.get_square(position);
 }
@@ -52,7 +55,11 @@ player_name_t Player::get_name() const {
     return name;
 }
 
-std::string Player::get_status() const {
+size_t Player::get_status() const {
+    return status;
+}
+
+std::string Player::status_to_string() const {
     if (status == PLAYING) {
         return "w grze";
     } else if (status == BANKRUPT) {

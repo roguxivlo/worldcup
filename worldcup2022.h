@@ -12,7 +12,7 @@
 
 // TODO czy ddefault score board obowiązkowy.
 
-using player_list_t = std::list<Player>;
+using player_list_t = std::list<std::shared_ptr<Player>>;
 
 class WorldCup2022 : public WorldCup {
 public:
@@ -28,7 +28,7 @@ public:
 
     // Dodaje nowego gracza o podanej nazwie.
     void addPlayer(player_name_t const &name) override {
-        players.push_back(Player(name, INITIAL_MONEY));
+        players.push_back(std::make_shared<Player>(name, INITIAL_MONEY));
     }
 
     // Konfiguruje tablicę wyników. Domyślnie jest skonfigurowana tablica
@@ -69,22 +69,25 @@ public:
         Square *square;
         while (round < rounds && players_in_game > 1) {
             scoreboard->onRound(round);
-            for (auto p: players) {
-                size_t moves = dice[0]->roll() + dice[1]->roll();
-                square = p.play_round(moves, board).get();
-                scoreboard->onTurn(p.get_name(), p.get_status(), square->name,
-                                   p.get_money());
+            for (const auto& p: players) {
+                // TODO ładniej
+                size_t moves = p->get_status() == Player::PLAYING ? dice[0]->roll() + dice[1]->roll() : 0;
+                std::cerr << "Round " << round << " Player: " << p->get_name() << " MoveNum: " << moves << '\n';
+                square = p->play_round(moves, board).get();
+                scoreboard->onTurn(p->get_name(), p->status_to_string(), square->name,
+                                   p->get_money());
             }
+            ++round;
         }
-        for (auto p: players) {
-        }
+        /*for (auto p: players) {
+        }*/
     }
 
 private:
     static const size_t N_DICE = 2;
     static const size_t MIN_PLAYERS = 2;
     static const size_t MAX_PLAYERS = 11;
-    constexpr static const money_t INITIAL_MONEY = 1000;
+    constexpr static const money_t INITIAL_MONEY = 1000; // TODO int
     static const DefaultScoreBoard DEFAULT_SCOREBOARD;
     player_list_t players;
     size_t players_in_game;

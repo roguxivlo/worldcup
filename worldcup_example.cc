@@ -2,6 +2,7 @@
 #include <memory>
 #include <sstream>
 #include <string>
+#include <iostream>
 
 #include "worldcup2022.h"
 
@@ -51,6 +52,7 @@ int main() {
   worldCup2022->setScoreBoard(scoreboard);
 
   worldCup2022->play(100);
+  std::cerr << scoreboard->str();
   assert(scoreboard->str() ==
          "=== Runda: 0\n"
          "Lewandowski [w grze] [840] - Dzień wolny od treningu\n"
