@@ -37,7 +37,7 @@ std::shared_ptr<Square> Player::play_round(Dice &dice, Board &board) {
         if (moves > 0) {
             for (size_t i = 0; i < moves - 1; ++i) {
                 ++position;
-                position %= board.get_n_squares();
+                position %= Board::N_SQUARES;
                 if (status != BANKRUPT) {
                     square = board.get_square(position).get();
                     square->passing_action(*this);
