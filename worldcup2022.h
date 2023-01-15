@@ -64,23 +64,49 @@ public:
         if (players.size() < MIN_PLAYERS) {
             throw TooFewPlayersException();
         }
-        players_in_game = players.size();
         size_t round = 0;
         Square *square;
-        while (round < rounds && players_in_game > 1) {
+        while (round < rounds) {
             scoreboard->onRound(round);
             for (const auto& p: players) {
                 // TODO ładniej
                 size_t moves = p->get_status() == Player::PLAYING ? dice[0]->roll() + dice[1]->roll() : 0;
-                std::cerr << "Round " << round << " Player: " << p->get_name() << " MoveNum: " << moves << '\n';
                 square = p->play_round(moves, board).get();
                 scoreboard->onTurn(p->get_name(), p->status_to_string(), square->name,
                                    p->get_money());
             }
+            Player *potential_winner = nullptr;
+            for (const auto &p : players) {
+                if (p->get_status() != Player::BANKRUPT) {
+                    if (potential_winner == nullptr) {
+                        potential_winner = p.get();
+                    } else {
+                        potential_winner = nullptr;
+                        break;
+                    }
+
+                }
+            }
+            if (potential_winner != nullptr) {
+                scoreboard->onWin(potential_winner->get_name());
+                return;
+            }
+
             ++round;
         }
-        /*for (auto p: players) {
-        }*/
+        if (round == rounds) {
+            money_t max_money = 0;
+            for (const auto &p : players) {
+                if (p->get_money() > max_money) {
+                    max_money = p->get_money();
+                }
+            }
+            for (const auto &p : players) {
+                if (p->get_money() == max_money) {
+                    scoreboard->onWin(p->get_name());
+                }
+            }
+        }
     }
 
 private:
