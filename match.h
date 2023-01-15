@@ -20,7 +20,12 @@ public:
     }
 
     void passing_action(Player &player) override {
-        fee_sum += match_fee * weight;
+        money_t money = player.get_money();
+        if (money < match_fee) {
+            fee_sum += money * weight;
+        } else {
+            fee_sum += match_fee * weight;
+        }
         player.add_money(-match_fee);
     }
 
