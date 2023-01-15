@@ -14,10 +14,13 @@
 
 class Board {
  public:
-  Square* advance(const Player* player) { return nullptr; }
+  Square* advance(const Player* player) {}
+  Square* get_square(size_t position) { return &squares[position]; }
+  size_t get_n_squares() const { return N_SQUARES; }
 
  private:
   static const size_t N_SQUARES = 12;
+  players_positions_t players_positions;
   const square_list_t squares = {
       Start("Początek sezonu", 50),
       Match("Mecz z San Marino", 160, Match::FRIENDLY),

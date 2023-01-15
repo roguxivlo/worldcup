@@ -4,11 +4,11 @@
 #include <list>
 
 #include "board.h"
+#include "defaultscoreboard.h"
 #include "exceptions.h"
 #include "player.h"
 #include "types.h"
 #include "worldcup.h"
-#include "defaultscoreboard.h"
 
 // TODO czy ddefault score board obowiązkowy.
 
@@ -62,6 +62,20 @@ class WorldCup2022 : public WorldCup {
     if (players.size() < MIN_PLAYERS) {
       throw TooFewPlayersException();
     }
+    players_in_game = players.size();
+    size_t round = 0;
+    Square *square;
+    while (round < rounds && players_in_game > 1) {
+      scoreboard->onRound(round);
+      for (auto p : players) {
+        size_t moves = dice[0]->roll() + dice[1]->roll();
+        square = p.play_round(moves, board);
+        scoreboard->onTurn(p.get_name(), p.get_status(), square->name,
+                           p.get_money());
+      }
+    }
+    for (auto p : players) {
+    }
   }
 
  private:
@@ -71,11 +85,12 @@ class WorldCup2022 : public WorldCup {
   static const money_t INITIAL_MONEY = 1000;
   static const DefaultScoreBoard DEFAULT_SCOREBOARD;
   player_list_t players;
+  size_t players_in_game;
   bool scoreboard_set = false;
   std::shared_ptr<ScoreBoard> scoreboard;
   std::shared_ptr<Die> dice[N_DICE];
   size_t n_dice = 0;
-  const Board board;
+  Board board;
 };
 
 #endif  // WORLDCUP2022_H
