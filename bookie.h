@@ -12,6 +12,7 @@ public:
             : Square(name), win_modulo(win_modulo), prize(prize), loss(loss) {}
 
     void action(Player &player) override {
+        // std::cerr<<name<<" at bookie ";
         static size_t counter = 2;
         ++counter;
         counter %= win_modulo;
